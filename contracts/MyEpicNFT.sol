@@ -15,7 +15,9 @@ contract MyEpicNFT is ERC721URIStorage {
 
   string[] firstWords = ['Jiraiya', 'Naruto', 'Hinata', 'Sasuke', 'Saitama', 'Goku', 'Sung Jinwoo', 'Eren', 'Kakashi', 'Batman', 'Ironman', 'Tobey', 'Davion', 'Minato', 'Mikasa', 'Rock Lee', 'Jon', 'Mirana'];
   string[] secondWords = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'];
-  string[] thirdWords = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q'];
+  string[] thirdWords = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'z'];
+
+  event NewEpicNFTMinted(address sender, uint256 tokenId);
 
   constructor() ERC721 ("SquareNFT", "SQUARE") {
     console.log('This is my NFT contract. Woah!');
@@ -93,5 +95,7 @@ contract MyEpicNFT is ERC721URIStorage {
 
     _tokenIds.increment();
     console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
+
+    emit NewEpicNFTMinted(msg.sender, newItemId);
   }
 }

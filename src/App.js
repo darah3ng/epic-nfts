@@ -9,6 +9,8 @@ const TWITTER_HANDLE = '_buildspace';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 const OPENSEA_LINK = '';
 const TOTAL_MINT_COUNT = 50;
+const CONTRACT_ADDRESS = "0x2A330B0751C003382c1058016b26D769F2203CAc";
+// const CONTRACT_ADDRESS = "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9";
 
 const App = () => {
   // Store user's public wallet
@@ -32,6 +34,9 @@ const App = () => {
       const account = accounts[0];
       console.log('Found an authorized accounts: ', account);
       setCurrentAccount(account);
+    
+      // Register event listener for the current connected wallet
+      setupEventListener();
     }
     else {
       console.log('No authorized account found');
@@ -50,6 +55,9 @@ const App = () => {
       const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
       console.log('Connected', accounts[0]);
       setCurrentAccount(accounts[0]);
+
+      // Register event listener when the wallet is connected
+      setupEventListener();
     }
     catch (error) {
       console.log(error);
@@ -57,8 +65,6 @@ const App = () => {
   }
 
   const askContractToMintNft = async () => {
-    const CONTRACT_ADDRESS = "0x7e7bd0d3fc16a62d85929f96b683a30f506e3e85";
-
     try {
       const { ethereum } = window;
 
@@ -76,7 +82,32 @@ const App = () => {
         console.log(`Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`);
       }
       else {
-        console.log("Ethereum ojbect doesn't exist!");
+        console.log("Ethereum object doesn't exist!");
+      }
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+
+  const setupEventListener = async () => {
+    try {
+      const { ethereum } = window;
+
+      if (ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, myEpicNft.abi, signer);
+
+        connectedContract.on("NewEpicNFTMinted", (from, tokenId) => {
+          console.log(from, tokenId.toNumber());
+          alert(`Hey there! We've minted your NFT and sent it to your wallet. 
+          It may be blank right now. It can take a max of 10 min to show up on OpenSea. 
+          Here's the link: https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`);
+        })
+      }
+      else {
+        console.log("Ethereum object doesn't exist!");
       }
     }
     catch (error) {
@@ -92,6 +123,7 @@ const App = () => {
   );
 
   useEffect(() => {
+    console.log('test');
     checkIfWalletIsConnected();
   }, [])
 
