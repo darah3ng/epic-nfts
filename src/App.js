@@ -7,14 +7,24 @@ import myEpicNft from './utils/MyEpicNFT.json';
 // Constants
 const TWITTER_HANDLE = '_buildspace';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
-const OPENSEA_LINK = '';
-const TOTAL_MINT_COUNT = 50;
+const OPENSEA_LINK = 'https://testnets.opensea.io/assets/';
 const CONTRACT_ADDRESS = "0x8E79821b65d93f3f557F59D90910d0e64869bE0E";
 // const CONTRACT_ADDRESS = "0xA51c1fc2f0D1a1b8494Ed1FE312d7C3a78Ed91C0";
 
 const App = () => {
   // Store user's public wallet
   const [currentAccount, setCurrentAccount] = useState('');
+  const [totalMint, setTotalMint] = useState(0);
+  const [totalMaxMint, setTotalMaxMint] = useState(0);
+
+  useEffect(() => {
+    checkIfWalletIsConnected();
+  }, [])
+
+  const getMintedNumbers = async () => {
+    // totalMint
+    // totalMaxMint
+  };
 
   const checkIfWalletIsConnected = async () => {
     const { ethereum } = window;
@@ -120,10 +130,6 @@ const App = () => {
       Connect to Wallet
     </button>
   );
-
-  useEffect(() => {
-    checkIfWalletIsConnected();
-  }, [])
 
   return (
     <div className="App">

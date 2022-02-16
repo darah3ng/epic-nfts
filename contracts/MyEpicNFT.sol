@@ -17,7 +17,7 @@ contract MyEpicNFT is ERC721URIStorage {
   
   string[] firstWords = ['Jiraiya', 'Naruto', 'Hinata', 'Sasuke', 'Saitama', 'Goku', 'Sung Jinwoo', 'Eren', 'Kakashi', 'Batman', 'Ironman', 'Tobey', 'Davion', 'Minato', 'Mikasa', 'Rock Lee', 'Jon', 'Mirana'];
   string[] secondWords = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'];
-  string[] thirdWords = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'z'];
+  string[] thirdWords = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r'];
   string[] colors = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', 
 		  '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
 		  '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A', 
@@ -55,33 +55,30 @@ contract MyEpicNFT is ERC721URIStorage {
     owner = _newOwner;
   }
 
-  function random(string memory input) internal pure returns (uint256) {
-    return uint256(keccak256(abi.encodePacked(input)));
+  function random(string memory _input) internal pure returns (uint256) {
+    return uint256(keccak256(abi.encodePacked(_input)));
   }
 
-  function pickRandomFirstWord(uint256 tokenId) public view returns (string memory) {
-    uint256 rand = random(string(abi.encodePacked('FIRST_WORD', Strings.toString(tokenId))));
-
-    rand = rand % firstWords.length;
-    return firstWords[rand];
+  function randomItems(string[] memory _items, string memory _word, uint256 _tokenId) public pure returns (string memory) {
+    uint256 rand = random(string(abi.encodePacked(_word, Strings.toString(_tokenId))));
+    rand = rand % _items.length;
+    return _items[rand];
   }
 
-  function pickRandomSecondWord(uint256 tokenId) public view returns (string memory) {
-    uint256 rand = random(string(abi.encodePacked('SECOND_WORD', Strings.toString(tokenId))));
-    rand = rand % secondWords.length;
-    return secondWords[rand];
+  function pickRandomFirstWord(uint256 _tokenId) public view returns (string memory) {
+    return randomItems(firstWords, "FIRST_WORD", _tokenId);
   }
 
-  function pickRandomThirdWord(uint256 tokenId) public view returns (string memory) {
-    uint256 rand = random(string(abi.encodePacked('THIRD_WORD', Strings.toString(tokenId))));
-    rand = rand % thirdWords.length;
-    return thirdWords[rand];
+  function pickRandomSecondWord(uint256 _tokenId) public view returns (string memory) {
+    return randomItems(secondWords, "SECOND_WORD", _tokenId);
   }
 
-  function pickRandomColor(uint256 tokenId) public view returns (string memory) {
-    uint256 rand = random(string(abi.encodePacked("COLOR", Strings.toString(tokenId))));
-    rand = rand % colors.length;
-    return colors[rand];
+  function pickRandomThirdWord(uint256 _tokenId) public view returns (string memory) {
+    return randomItems(thirdWords, "THIRD_WORD", _tokenId);
+  }
+
+  function pickRandomColor(uint256 _tokenId) public view returns (string memory) {
+    return randomItems(colors, "COLOR", _tokenId);
   }
 
   function getTotalMaxMintedNumber() public view returns (int256) {
@@ -105,7 +102,7 @@ contract MyEpicNFT is ERC721URIStorage {
     string memory first = pickRandomFirstWord(newItemId);
     string memory second = pickRandomSecondWord(newItemId);
     string memory third = pickRandomThirdWord(newItemId);
-    string memory combinedWord = string(abi.encodePacked(first, second, third));
+    string memory combinedWord = string(abi.encodePacked(first, ' level ', second, third));
 
     string memory randomColor = pickRandomColor(newItemId);
     string memory finalSvg = string(abi.encodePacked(svgPartOne, randomColor, svgPartTwo, combinedWord, "</text></svg>"));
