@@ -9,8 +9,8 @@ const TWITTER_HANDLE = '_buildspace';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 const OPENSEA_LINK = '';
 const TOTAL_MINT_COUNT = 50;
-const CONTRACT_ADDRESS = "0x2A330B0751C003382c1058016b26D769F2203CAc";
-// const CONTRACT_ADDRESS = "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9";
+const CONTRACT_ADDRESS = "0x8E79821b65d93f3f557F59D90910d0e64869bE0E";
+// const CONTRACT_ADDRESS = "0xA51c1fc2f0D1a1b8494Ed1FE312d7C3a78Ed91C0";
 
 const App = () => {
   // Store user's public wallet
@@ -53,10 +53,9 @@ const App = () => {
       }
 
       const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-      console.log('Connected', accounts[0]);
       setCurrentAccount(accounts[0]);
 
-      // Register event listener when the wallet is connected
+      // Register event listener for new wallet
       setupEventListener();
     }
     catch (error) {
@@ -101,9 +100,9 @@ const App = () => {
 
         connectedContract.on("NewEpicNFTMinted", (from, tokenId) => {
           console.log(from, tokenId.toNumber());
-          alert(`Hey there! We've minted your NFT and sent it to your wallet. 
-          It may be blank right now. It can take a max of 10 min to show up on OpenSea. 
-          Here's the link: https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`);
+          // alert(`Hey there! We've minted your NFT and sent it to your wallet. 
+          // It may be blank right now. It can take a max of 10 min to show up on OpenSea. 
+          // Here's the link: https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`);
         })
       }
       else {
@@ -123,7 +122,6 @@ const App = () => {
   );
 
   useEffect(() => {
-    console.log('test');
     checkIfWalletIsConnected();
   }, [])
 
