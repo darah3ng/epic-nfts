@@ -2,7 +2,6 @@
   "name": "epic-nfts",
   "version": "1.0.0",
   "description": "A place where you can mint epic nfts.",
-  "main": "index.js",
   "repository": "git@github.com:darah3ng/epic-nfts.git",
   "author": "darah3ng <daragitgud@gmail.com>",
   "license": "MIT",

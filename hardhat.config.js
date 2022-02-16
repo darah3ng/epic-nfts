@@ -1,3 +1,4 @@
+require('dotenv').config({ path:__dirname + '/.env' });
 require("@nomiclabs/hardhat-waffle");
 
 // This is a sample Hardhat task. To learn how to create your own go to
@@ -21,7 +22,7 @@ module.exports = {
   networks: {
     rinkeby: {
       url: "https://eth-rinkeby.alchemyapi.io/v2/TnaTLso7tLkPAmATgwibneeQbi3KyrVI",
-      accounts: [`${process.env.PRIVATE_KEY_RINKEBY_BUILDSPACE}`]
+      accounts: [`${process.env.REACT_APP_PRIVATE_KEY_RINKEBY_BUILDSPACE}`]
     }
   }
 };
