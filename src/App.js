@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { ethers } from 'ethers';
-import { Container, Heading, Text, Button, VStack, HStack, Box, useToast, useDisclosure, Spinner, Link } from '@chakra-ui/react'
+import { Container, Heading, Text, Button, VStack, HStack, Box, useToast, useDisclosure, Spinner, Link, Tag, TagLeftIcon, TagLabel } from '@chakra-ui/react'
 import { ExternalLinkIcon } from '@chakra-ui/icons';
+import { RiWallet3Line } from 'react-icons/ri';
 
 import BasicModal from './components/ui/BasicModal';
 import myEpicNft from './utils/MyEpicNFT.json';
 
 // Constants
-const OPENSEA_LINK = 'https://testnets.opensea.io/assets';
-// const CONTRACT_ADDRESS = "0x8E79821b65d93f3f557F59D90910d0e64869bE0E";
-const CONTRACT_ADDRESS = "0x959922bE3CAee4b8Cd9a407cc3ac1C251C2007B1";
+const OPENSEA_COLLECTIONS_LINK = 'https://testnets.opensea.io/collection/squarenft-jisl0r5e4d';
+const OPENSEA_ASSET_LINK = 'https://testnets.opensea.io/assets';
+const CONTRACT_ADDRESS = "0xA922F123DDf2B1A2081C068e742eC4A1cfba9C82";
 
 const App = () => {
   // App states
@@ -19,7 +20,6 @@ const App = () => {
   const [isConnectWalletLoading, setIsConnectWalletLoading] = useState(false);
   const [isMintingLoading, setIsMintingLoading] = useState(false);
   const [tokenId, setTokenId] = useState();
-  const [networkError, setNetworkError] = useState();
   
   // Chakra UI states
   const { onOpen: onOpenLinkModal, isOpen: isOpenLinkModal, onClose: onCloseLinkModal } = useDisclosure();
@@ -36,18 +36,18 @@ const App = () => {
     checkForRinkebyNetwork();
   }, [])
 
-  const viewToast = (isError = false) => {
-    return toast({
-      duration: 4000,
-      position: 'bottom',
-      isClosable: true,
-      render: () => (
-        <Box width={'3xs'} color='white' p={3} bg={isError ? 'red.300' : 'green.600'} borderRadius={'md'} textAlign={'center'} mb={5}>
-            {isError ? 'Error' : 'Success'}
-        </Box>
-      )
-    });
-  };
+  // const viewToast = (isError = false) => {
+  //   return toast({
+  //     duration: 4000,
+  //     position: 'bottom',
+  //     isClosable: true,
+  //     render: () => (
+  //       <Box width={'3xs'} color='white' p={3} bg={isError ? 'red.300' : 'green.600'} borderRadius={'md'} textAlign={'center'} mb={5}>
+  //           {isError ? 'Error' : 'Success'}
+  //       </Box>
+  //     )
+  //   });
+  // };
 
   const getMintedNumbers = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -63,7 +63,6 @@ const App = () => {
   const checkForRinkebyNetwork = async () => {
     const { ethereum } = window;
     let chainId = await ethereum.request({ method: 'eth_chainId' });
-    console.log("Connected to chain " + chainId);
 
     // String, hex code of the chainId of the Rinkebey test network
     const rinkebyChainId = "0x4"; 
@@ -168,11 +167,6 @@ const App = () => {
           getMintedNumbers();
 
           setTokenId(nftId.toNumber());
-
-          // console.log(`${CONTRACT_ADDRESS} / ${nftId.toNumber()}`);
-          // alert(`Hey there! We've minted your NFT and sent it to your wallet. 
-          // It may be blank right now. It can take a max of 10 min to show up on OpenSea. 
-          // Here's the link: https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`);
         })
       }
     }
@@ -201,19 +195,20 @@ const App = () => {
       return;
     }
 
+    const firstFive = currentAccount.slice(0, 5);
+    const lastFour = currentAccount.slice(currentAccount.length - 4);
+
     return (
-      <HStack fontFamily={'monospace'} bg={'ActiveCaption'} borderRadius={'xl'} p={1} color={'black'}>
-        <Text fontSize='smaller'>Connected Wallet: </Text>
-        <Text fontSize='smaller' fontWeight={'semibold'}>
-          {currentAccount}
-        </Text>
-      </HStack>
+      <Tag>
+        <TagLeftIcon as={RiWallet3Line} />
+        <TagLabel>{firstFive}...{lastFour}</TagLabel>
+      </Tag>
     )
   }
 
   const renderTokenLink = () => (
     <Box>
-      <Link href={`${OPENSEA_LINK}/${CONTRACT_ADDRESS}/${tokenId}`} color='teal.400' fontWeight={'semibold'} isExternal>
+      <Link href={`${OPENSEA_ASSET_LINK}/${CONTRACT_ADDRESS}/${tokenId}`} color='teal.400' fontWeight={'semibold'} isExternal>
         Go to your NFT <ExternalLinkIcon verticalAlign={'text-top'}/>
       </Link>
 
@@ -233,7 +228,8 @@ const App = () => {
       boxShadow={'2xl'}
     >
       <VStack spacing={4}>
-        <Heading bgGradient={'linear(to-r, #60c657 30%, #35aee2 60%)'} bgClip='text'>My NFT Collection</Heading>
+        <Heading bgGradient={'linear(to-r, #60c657 30%, #35aee2 60%)'} bgClip='text'>My Hero NFT Collection</Heading>
+        {renderConnectedWallet()}
 
         <Text>
           Each unique. Each Hero. Discover your NFT today.
@@ -243,7 +239,12 @@ const App = () => {
           {totalMaxMint - totalMint} lefts 🔥
         </Heading>
 
-        {renderButton()}
+        <HStack>
+          <Link href={OPENSEA_COLLECTIONS_LINK} isExternal>
+            <Button>Gallery</Button>
+          </Link>
+          {renderButton()}
+        </HStack>
 
         <BasicModal isOpen={isOpenLinkModal} onClose={onCloseLinkModal}>
           {/* { isMintingLoading here relies on the NewEpicNFTMinted to trigger } */}
@@ -253,8 +254,6 @@ const App = () => {
         <BasicModal isOpen={isOpenNetworkModal} onClose={onCloseNetworkModal}>
           Please change your network to Rinkeby 🙏
         </BasicModal>
-
-        {renderConnectedWallet()}
       </VStack>
     </Container>
   );
