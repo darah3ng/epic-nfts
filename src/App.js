@@ -111,8 +111,6 @@ const App = () => {
       setCurrentAccount(account);
       setIsConnectWalletLoading(false);
 
-      console.log('connectWallet');
-
       // Register event listener for new wallet
       setupEventListener();
     }
