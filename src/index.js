@@ -7,6 +7,9 @@ const dark = "linear-gradient(to right, #000000, #434343)";
 const light = "#f0f0f0";
 
 const theme = extendTheme({
+  config: {
+    initialColorMode: "dark"
+  },
   styles: {
     global: (props) => ({
       body: {
@@ -15,7 +18,6 @@ const theme = extendTheme({
     })
   }
 });
-
 
 ReactDOM.render(
   <React.StrictMode>
