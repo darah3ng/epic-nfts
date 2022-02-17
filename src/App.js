@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ethers } from 'ethers';
-import { Container, Heading, Text, Button, VStack, HStack, Box, useToast, useDisclosure, Spinner, Link, Tag, TagLeftIcon, TagLabel } from '@chakra-ui/react'
+import { Container, Heading, Text, Button, VStack, HStack, Box, useToast, useDisclosure, Spinner, Link, Tag, TagLeftIcon, TagLabel, Divider, Center } from '@chakra-ui/react'
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { RiWallet3Line } from 'react-icons/ri';
 
@@ -238,6 +238,10 @@ const App = () => {
         <Heading size={'md'} bgGradient={'linear(to-l, #40e0d0, #ff8c00, #ff0080)'} bgClip={'text'}>
           {totalMaxMint - totalMint} lefts 🔥
         </Heading>
+
+        <Center height={'100px'}>
+          <Divider orientation='vertical' />
+        </Center>
 
         <HStack>
           <Link href={OPENSEA_COLLECTIONS_LINK} isExternal>
