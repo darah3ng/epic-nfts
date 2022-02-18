@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ethers } from 'ethers';
-import { Container, Heading, Text, Button, VStack, HStack, Box, useToast, useDisclosure, Spinner, Link, Tag, TagLeftIcon, TagLabel, Divider, Center } from '@chakra-ui/react'
+import { Container, Heading, Text, Button, VStack, HStack, Box, useDisclosure, Spinner, Link, Tag, TagLeftIcon, TagLabel, Divider, Center } from '@chakra-ui/react'
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { RiWallet3Line } from 'react-icons/ri';
 
@@ -25,26 +25,11 @@ const App = () => {
   const { onOpen: onOpenLinkModal, isOpen: isOpenLinkModal, onClose: onCloseLinkModal } = useDisclosure();
   const { onOpen: onOpenNetworkModal, isOpen: isOpenNetworkModal, onClose: onCloseNetworkModal } = useDisclosure();
   const { onOpen: onOpenWalletModal, isOpen: isOpenWalletModal, onClose: onCloseWalletModal } = useDisclosure();
-  const toast = useToast();
 
   useEffect(() => {
     checkIfWalletIsConnected();
     getMintedNumbers();
-    // checkForRinkebyNetwork();
   }, [])
-
-  // const viewToast = (isError = false) => {
-  //   return toast({
-  //     duration: 4000,
-  //     position: 'bottom',
-  //     isClosable: true,
-  //     render: () => (
-  //       <Box width={'3xs'} color='white' p={3} bg={isError ? 'red.300' : 'green.600'} borderRadius={'md'} textAlign={'center'} mb={5}>
-  //           {isError ? 'Error' : 'Success'}
-  //       </Box>
-  //     )
-  //   });
-  // };
 
   window?.ethereum?.on('accountsChanged', function (accounts) {
     setCurrentAccount(accounts[0]);
@@ -213,7 +198,7 @@ const App = () => {
         </Tag>
 
         <Link href='https://faucets.chain.link/rinkeby' fontSize={'xs'} color='cyan.300' isExternal>
-          <Text as={'u'}>Request testnet ETH</Text>
+          <Text as={'u'}>Request Rinkeby ETH</Text>
         </Link>
       </HStack>
     )

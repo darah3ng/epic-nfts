@@ -6,7 +6,6 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  Button
 } from '@chakra-ui/react';
 
 function BasicModal({ modalTitle, isOpen, onClose, children }) {
@@ -22,9 +21,7 @@ function BasicModal({ modalTitle, isOpen, onClose, children }) {
           </ModalBody>
 
           <ModalFooter>
-            {/* <Button colorScheme='blue' onClick={onClose}>
-              Close
-            </Button> */}
+            {/* { Empty } */}
           </ModalFooter>
         </ModalContent>
       </Modal>
