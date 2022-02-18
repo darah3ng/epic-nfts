@@ -6,6 +6,10 @@
 
 🖼️ [Gallery](https://testnets.opensea.io/collection/squarenft-fmf1e1djjt)
 
+<p align='center'>
+  <image src="https://user-images.githubusercontent.com/12386682/154601031-b6d71f81-9fb3-4eed-aeb0-38188ddceecb.png" width="500">
+</p>
+
 <p>
   The NFT is a randomly generated SVG.
 
@@ -21,10 +25,6 @@ Another cool thing is these NFTs are [On-Chain](https://art.haus/on-chain-nfts-a
 ## Request ETH
 
 Don't have enough ETH on your Rinkeby network? I [gotchu](https://faucets.chain.link/rinkeby) 👈😉
-
-<p align='center'>
-  <image src="https://user-images.githubusercontent.com/12386682/154601031-b6d71f81-9fb3-4eed-aeb0-38188ddceecb.png" width="500">
-</p>
 
 ## Features
 
