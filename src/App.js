@@ -206,10 +206,16 @@ const App = () => {
     const lastFour = currentAccount.slice(currentAccount.length - 4);
 
     return (
-      <Tag>
-        <TagLeftIcon as={RiWallet3Line} />
-        <TagLabel>{firstFive}...{lastFour}</TagLabel>
-      </Tag>
+      <HStack>
+        <Tag>
+          <TagLeftIcon as={RiWallet3Line} />
+          <TagLabel>{firstFive}...{lastFour}</TagLabel>
+        </Tag>
+
+        <Link href='https://faucets.chain.link/rinkeby' fontSize={'xs'} color='cyan.300' isExternal>
+          <Text as={'u'}>Request testnet ETH</Text>
+        </Link>
+      </HStack>
     )
   }
 
@@ -242,7 +248,7 @@ const App = () => {
           Each unique. Each Hero. Discover your NFT today.
         </Text>
 
-        <Heading size={'md'} bgGradient={'linear(to-l, #40e0d0, #ff8c00, #ff0080)'} bgClip={'text'}>
+        <Heading size={'lg'} bgGradient={'linear(to-l, #ff0080, #ff8c00, #40e0d0)'} bgClip={'text'}>
           {totalMaxMint - totalMint} lefts 🔥
         </Heading>
 
