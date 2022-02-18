@@ -232,51 +232,57 @@ const App = () => {
   );
 
   return (
-    <Container
-      mt={10}
-      pt={10}
-      minH={'90vh'}
-      bgGradient={'linear(to-r, #355c7d, #6c5b7b, #c06c84)'}
-      borderRadius={'2xl'}
-      boxShadow={'2xl'}
-    >
-      <VStack spacing={4}>
-        <Heading bgGradient={'linear(to-r, #60c657 30%, #35aee2 60%)'} bgClip='text'>My Hero NFT Collection</Heading>
-        {renderConnectedWallet()}
+    <>
+      <Container
+        mt={10}
+        pt={10}
+        minH={'90vh'}
+        bgGradient={'linear(to-r, #355c7d, #6c5b7b, #c06c84)'}
+        borderRadius={'2xl'}
+        boxShadow={'2xl'}
+      >
+        <VStack spacing={4}>
+          <Heading bgGradient={'linear(to-r, #60c657 30%, #35aee2 60%)'} bgClip='text'>My Hero NFT Collection</Heading>
+          {renderConnectedWallet()}
 
-        <Text>
-          Each unique. Each Hero. Discover your NFT today.
-        </Text>
+          <Text>
+            Each unique. Each Hero. Discover your NFT today.
+          </Text>
 
-        <Heading size={'lg'} bgGradient={'linear(to-l, #ff0080, #ff8c00, #40e0d0)'} bgClip={'text'}>
-          {totalMaxMint - totalMint} lefts 🔥
-        </Heading>
+          <Heading size={'lg'} bgGradient={'linear(to-l, #ff0080, #ff8c00, #40e0d0)'} bgClip={'text'}>
+            {totalMaxMint - totalMint} lefts 🔥
+          </Heading>
 
-        <Center height={'100px'}>
-          <Divider orientation='vertical' />
-        </Center>
+          <Center height={'100px'}>
+            <Divider orientation='vertical' />
+          </Center>
 
-        <HStack>
-          <Link href={OPENSEA_COLLECTIONS_LINK} isExternal>
-            <Button>Gallery</Button>
-          </Link>
-          {renderButton()}
-        </HStack>
+          <HStack>
+            <Link href={OPENSEA_COLLECTIONS_LINK} isExternal>
+              <Button>Gallery</Button>
+            </Link>
+            {renderButton()}
+          </HStack>
 
-        <BasicModal isOpen={isOpenLinkModal} onClose={onCloseLinkModal}>
-          {/* { isMintingLoading here relies on the NewEpicNFTMinted to trigger } */}
-          {isMintingLoading ? <Spinner /> : renderTokenLink()}
-        </BasicModal>
+          <BasicModal isOpen={isOpenLinkModal} onClose={onCloseLinkModal}>
+            {/* { isMintingLoading here relies on the NewEpicNFTMinted to trigger } */}
+            {isMintingLoading ? <Spinner /> : renderTokenLink()}
+          </BasicModal>
 
-        <BasicModal isOpen={isOpenNetworkModal} onClose={onCloseNetworkModal}>
-          Please change your network to Rinkeby 🙏
-        </BasicModal>
+          <BasicModal isOpen={isOpenNetworkModal} onClose={onCloseNetworkModal}>
+            Please change your network to Rinkeby 🙏
+          </BasicModal>
 
-        <BasicModal isOpen={isOpenWalletModal} onClose={onCloseWalletModal}>
-          Can't detect your MetaMask wallet 😅
-        </BasicModal>
-      </VStack>
-    </Container>
+          <BasicModal isOpen={isOpenWalletModal} onClose={onCloseWalletModal}>
+            Can't detect your MetaMask wallet 😅
+          </BasicModal>
+        </VStack>
+      </Container>
+
+      <Box textAlign={'center'} mt={3}>
+        <Text as='kbd'>built by <Link href='https://www.daraheng.com/' color={'aquamarine'} isExternal>daraheng</Link></Text>
+      </Box>
+    </>
   );
 };
 
