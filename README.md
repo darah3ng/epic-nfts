@@ -14,6 +14,12 @@
   Go grab one. It's free. 😊
 </p>
 
+## On-chain NFT
+
+<p>
+  Another cool thing is these NFTs are on-chain, which means they are written and stored on the blockchain. It doesn't rely on third-party to host the image.
+</p>
+
 <p align='center'>
   <image src="https://user-images.githubusercontent.com/12386682/154601031-b6d71f81-9fb3-4eed-aeb0-38188ddceecb.png" width="500">
 </p>
