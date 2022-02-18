@@ -8,9 +8,9 @@ import BasicModal from './components/ui/BasicModal';
 import myEpicNft from './utils/MyEpicNFT.json';
 
 // Constants
-const OPENSEA_COLLECTIONS_LINK = 'https://testnets.opensea.io/collection/squarenft-jisl0r5e4d';
+const OPENSEA_COLLECTIONS_LINK = 'https://testnets.opensea.io/collection/squarenft-fmf1e1djjt';
 const OPENSEA_ASSET_LINK = 'https://testnets.opensea.io/assets';
-const CONTRACT_ADDRESS = "0xA922F123DDf2B1A2081C068e742eC4A1cfba9C82";
+const CONTRACT_ADDRESS = "0x40B6AB6911381840F0Df8Da474f1A825f1F3b63B";
 
 const App = () => {
   // App states
@@ -222,7 +222,7 @@ const App = () => {
       </Link>
 
       <Text fontSize={'sm'}>
-        It can take up to 10 mins to show up on OpenSea. ⌛
+        The image can take up to 10 mins to show up on OpenSea. ⌛
       </Text>
     </Box>
   );
