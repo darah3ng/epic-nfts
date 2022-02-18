@@ -2,9 +2,9 @@
 
 `Network: Rinkeby`
 
-🔗 https://hero-nfts.vercel.app/
+🔗 [Website](https://hero-nfts.vercel.app/)
 
-🖼️ https://testnets.opensea.io/collection/squarenft-fmf1e1djjt
+🖼️ [Gallery](https://testnets.opensea.io/collection/squarenft-fmf1e1djjt)
 
 <p>
   The NFT is a randomly generated SVG.
