@@ -6,6 +6,8 @@
 
 🖼️ [Gallery](https://testnets.opensea.io/collection/squarenft-fmf1e1djjt)
 
+⛓️ [Contract on Rinkeby Etherscan](https://rinkeby.etherscan.io/address/0x40b6ab6911381840f0df8da474f1a825f1f3b63b#code)
+
 <p align='center'>Website</p>
 <p align='center'>
   <image src="https://user-images.githubusercontent.com/12386682/154601031-b6d71f81-9fb3-4eed-aeb0-38188ddceecb.png" width="500" />
