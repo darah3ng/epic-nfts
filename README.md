@@ -28,7 +28,7 @@
 
 ## On-chain NFT
 
-Another cool thing is these NFTs are [On-Chain](https://art.haus/on-chain-nfts-and-why-theyre-better/#:~:text=On%2Dchain%20NFTs%20are%20tokens,and%20stored%20on%20the%20blockchain), which means they are written and stored on the blockchain. It doesn't rely on third-party to host the image.
+Another cool thing is these NFTs are [on-chain](https://art.haus/on-chain-nfts-and-why-theyre-better/#:~:text=On%2Dchain%20NFTs%20are%20tokens,and%20stored%20on%20the%20blockchain), which means they are written and stored on the blockchain. It doesn't rely on third-party to host the image.
 
 ## Request ETH
 
