@@ -1,5 +1,6 @@
 require('dotenv').config({ path:__dirname + '/.env' });
 require("@nomiclabs/hardhat-waffle");
+require("@nomiclabs/hardhat-etherscan");
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -10,6 +11,8 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
     console.log(account.address);
   }
 });
+
+console.log(process.env.REACT_APP_ETHERSCAN_API_KEY);
 
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
@@ -24,5 +27,8 @@ module.exports = {
       url: "https://eth-rinkeby.alchemyapi.io/v2/TnaTLso7tLkPAmATgwibneeQbi3KyrVI",
       accounts: [`${process.env.REACT_APP_PRIVATE_KEY_RINKEBY_BUILDSPACE}`]
     }
+  },
+  etherscan: {
+    apiKey: `${process.env.REACT_APP_ETHERSCAN_API_KEY}`
   }
 };
