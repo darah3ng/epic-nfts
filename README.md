@@ -4,10 +4,12 @@
 
 🔗 https://hero-nfts.vercel.app/
 
+🖼️ https://testnets.opensea.io/collection/squarenft-fmf1e1djjt
+
 <p>
   The NFT is a randomly generated SVG.
 
-  The SVG contains a hero name, number, and an emoji. `ex: Davion 9🐺`
+  The SVG contains a hero name, number, an emoji and a random background color. `ex: Davion 9🐺`
 
   Go grab one. It's free. 😊
 </p>
