@@ -24,11 +24,8 @@ const App = () => {
   // Chakra UI states
   const { onOpen: onOpenLinkModal, isOpen: isOpenLinkModal, onClose: onCloseLinkModal } = useDisclosure();
   const { onOpen: onOpenNetworkModal, isOpen: isOpenNetworkModal, onClose: onCloseNetworkModal } = useDisclosure();
+  const { onOpen: onOpenWalletModal, isOpen: isOpenWalletModal, onClose: onCloseWalletModal } = useDisclosure();
   const toast = useToast();
-
-  window.ethereum.on('accountsChanged', function (accounts) {
-    setCurrentAccount(accounts[0]);
-  })
 
   useEffect(() => {
     checkIfWalletIsConnected();
@@ -49,7 +46,17 @@ const App = () => {
   //   });
   // };
 
+  window?.ethereum?.on('accountsChanged', function (accounts) {
+    setCurrentAccount(accounts[0]);
+  })
+
   const getMintedNumbers = async () => {
+    const { ethereum } = window;
+
+    if (!ethereum) {
+      return;
+    }
+
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const contract = new ethers.Contract(CONTRACT_ADDRESS, myEpicNft.abi, provider);
 
@@ -62,8 +69,12 @@ const App = () => {
 
   const checkForRinkebyNetwork = async () => {
     const { ethereum } = window;
-    let chainId = await ethereum.request({ method: 'eth_chainId' });
 
+    if (!ethereum) {
+      return;
+    }
+
+    let chainId = await ethereum.request({ method: 'eth_chainId' });
     // String, hex code of the chainId of the Rinkebey test network
     const rinkebyChainId = "0x4"; 
     if (chainId !== rinkebyChainId) {
@@ -102,7 +113,7 @@ const App = () => {
       const { ethereum } = window;
 
       if (!ethereum) {
-        alert('Get MetaMask!');
+        onOpenWalletModal();
         return;
       }
 
@@ -255,6 +266,10 @@ const App = () => {
 
         <BasicModal isOpen={isOpenNetworkModal} onClose={onCloseNetworkModal}>
           Please change your network to Rinkeby 🙏
+        </BasicModal>
+
+        <BasicModal isOpen={isOpenWalletModal} onClose={onCloseWalletModal}>
+          Can't detect your MetaMask wallet 😅
         </BasicModal>
       </VStack>
     </Container>
