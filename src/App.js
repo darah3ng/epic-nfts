@@ -30,7 +30,7 @@ const App = () => {
   useEffect(() => {
     checkIfWalletIsConnected();
     getMintedNumbers();
-    checkForRinkebyNetwork();
+    // checkForRinkebyNetwork();
   }, [])
 
   // const viewToast = (isError = false) => {
@@ -57,8 +57,21 @@ const App = () => {
       return;
     }
 
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const provider = new ethers.providers.Web3Provider(window.ethereum, 'any');
     const contract = new ethers.Contract(CONTRACT_ADDRESS, myEpicNft.abi, provider);
+
+    provider.on("network", (newNetwork, oldNetwork) => {
+      // When a Provider makes its initial connection, it emits a "network"
+      // event with a null oldNetwork along with the newNetwork. So, if the
+      // oldNetwork exists, it represents a changing network
+      if (oldNetwork) {
+          window.location.reload();
+      }
+
+      if (newNetwork.name !== 'rinkeby') {
+        onOpenNetworkModal();
+      }
+    });
 
     const getTotalMintedMaxNumber = await contract.getTotalMaxMintedNumber();
     const getMintedNumbers = await contract.getMintedNumber();
@@ -66,21 +79,6 @@ const App = () => {
     setTotalMaxMint(getTotalMintedMaxNumber.toString());
     setTotalMint(getMintedNumbers.toString());
   };
-
-  const checkForRinkebyNetwork = async () => {
-    const { ethereum } = window;
-
-    if (!ethereum) {
-      return;
-    }
-
-    let chainId = await ethereum.request({ method: 'eth_chainId' });
-    // String, hex code of the chainId of the Rinkebey test network
-    const rinkebyChainId = "0x4"; 
-    if (chainId !== rinkebyChainId) {
-      onOpenNetworkModal();
-    }
-  }
 
   const checkIfWalletIsConnected = async () => {
     const { ethereum } = window;
