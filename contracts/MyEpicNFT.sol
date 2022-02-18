@@ -17,7 +17,8 @@ contract MyEpicNFT is ERC721URIStorage {
   
   string[] firstWords = ['Jiraiya', 'Naruto', 'Hinata', 'Sasuke', 'Saitama', 'Goku', 'Sung Jinwoo', 'Eren', 'Kakashi', 'Batman', 'Ironman', 'Tobey', 'Davion', 'Minato', 'Mikasa', 'Rock Lee', 'Jon', 'Mirana'];
   string[] secondWords = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'];
-  string[] thirdWords = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r'];
+  // string[] thirdWords = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r'];
+  string[] thirdWords = [unicode"😉", unicode"🔥", unicode"✨", unicode"🔪", unicode"🧨", unicode"🥷", unicode"🥇", unicode"🗿", unicode"⚔️", unicode"🐺", unicode"💦", unicode"🍀", unicode"🌈", unicode"💯", unicode"🚒", unicode"🥈", unicode"🗡️", unicode"👑"];
   string[] colors = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', 
 		  '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
 		  '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A', 
@@ -102,7 +103,8 @@ contract MyEpicNFT is ERC721URIStorage {
     string memory first = pickRandomFirstWord(newItemId);
     string memory second = pickRandomSecondWord(newItemId);
     string memory third = pickRandomThirdWord(newItemId);
-    string memory combinedWord = string(abi.encodePacked(first, ' level ', second, third));
+    string memory combinedWord = string(abi.encodePacked(first, ' ', second, third));
+    string memory name = string(abi.encodePacked(first, ' ', second));
 
     string memory randomColor = pickRandomColor(newItemId);
     string memory finalSvg = string(abi.encodePacked(svgPartOne, randomColor, svgPartTwo, combinedWord, "</text></svg>"));
@@ -114,7 +116,7 @@ contract MyEpicNFT is ERC721URIStorage {
           abi.encodePacked(
             '{"name": "',
             // We set the title of our NFT as the generated word.
-            combinedWord,
+            name,
             '", "description": "A highly acclaimed collection of squares.", "image": "data:image/svg+xml;base64,',
             // We add data:image/svg+xml;base64 and then append our base64 encode our svg.
             Base64.encode(bytes(finalSvg)),
