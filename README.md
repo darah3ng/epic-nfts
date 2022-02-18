@@ -7,7 +7,12 @@
 🖼️ [Gallery](https://testnets.opensea.io/collection/squarenft-fmf1e1djjt)
 
 <p align='center'>
-  <image src="https://user-images.githubusercontent.com/12386682/154601031-b6d71f81-9fb3-4eed-aeb0-38188ddceecb.png" width="500">
+  <image src="https://user-images.githubusercontent.com/12386682/154601031-b6d71f81-9fb3-4eed-aeb0-38188ddceecb.png" width="500" />
+</p>
+
+Gallery
+<p align='center'>
+  <image src="https://user-images.githubusercontent.com/12386682/154670003-b28742b8-d5b0-4ce4-b1dd-4cebc927ddc2.png" width="500" />
 </p>
 
 <p>
